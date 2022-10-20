@@ -22,7 +22,7 @@ in the `elm-lang/json` package, a declaration will be returned. This should be p
 code!
 
 The returned declaration field is a `Dict` to avoid duplicate declarations when calling `generate` recursively.
-You can use `Dict.union` to combine different declarations and ensure no duplicates.
+You can use `Dict.union` to combine different generated declarations to ensure no duplicates.
 
 -}
 type alias Generated =
@@ -117,6 +117,12 @@ generateCustom expressions =
 If there are 8 or less items in the passed list, this function will return a call to a native `Json.Decode.mapX`
 function (X being the number of passed arguments). If there are more than 8 arguments, a custom `Json.Decode.mapX`
 function will be returned along with its declaration.
+
+    JsonDecodeMapGen.generate
+        [ Elm.string ""
+        ]
+
+Someting else...
 
 -}
 generate : List Elm.Expression -> Generated
