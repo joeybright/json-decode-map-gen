@@ -1,6 +1,6 @@
 module Tests exposing (..)
 
-import GeneratedForTesting
+import JsonDecodeMapGen
 
 
 test =
