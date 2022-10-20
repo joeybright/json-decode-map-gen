@@ -1,7 +1,15 @@
-module JsonDecodeMapGen exposing (generate)
+module JsonDecodeMapGen exposing
+    ( Generated
+    , generate
+    )
 
 {-| This module takes a list of `Elm.Expression` and either calls a built-in `Json.Decode.map` function from
-the`Json.Decode` library or creates a custom map function.
+the `elm-lang/json` library or creates a custom map function.
+
+@docs Generated
+
+@docs generate
+
 -}
 
 import Dict exposing (Dict)
@@ -104,8 +112,8 @@ generateCustom expressions =
 {-| Generate a `Json.Decode.mapX` function based on the number of expressions passed.
 
 If there are 8 or less items in the passed list, this function will return a call to a native `Json.Decode.mapX`
-function. If there are more than 8 arguments, a custom `Json.Decode.mapX` function will be returned along with
-its declaration.
+function (X being the number of passed arguments). If there are more than 8 arguments, a custom `Json.Decode.mapX`
+function will be returned along with its declaration.
 
 -}
 generate : List Elm.Expression -> Generated
