@@ -1,0 +1,28 @@
+{
+  "name": "json-decode-map-gen",
+  "version": "1.0.0",
+  "description": "A utility for `elm-codegen` for generating custom`Json.Decode.map` functions beyond what the package provides.",
+  "main": "index.js",
+  "scripts": {
+    "test": "elm-test --fuzz 25",
+    "test:watch": "elm-test --watch",
+    "codegen": "npx elm-codegen run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeybright/json-decode-map-gen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joeybright/json-decode-map-gen/issues"
+  },
+  "homepage": "https://github.com/joeybright/json-decode-map-gen#readme",
+  "dependencies": {
+    "elm": "^0.19.1-5",
+    "elm-codegen": "^0.2.0",
+    "elm-format": "^0.8.5",
+    "elm-review": "^2.7.5",
+    "elm-test": "^0.19.1-revision9"
+  }
+}
