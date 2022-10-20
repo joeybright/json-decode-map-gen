@@ -3,8 +3,7 @@ module JsonDecodeMapGen exposing
     , generate
     )
 
-{-| This module takes a list of `Elm.Expression` and either calls a built-in `Json.Decode.map` function from
-the `elm-lang/json` library or creates a custom map function.
+{-|
 
 @docs Generated
 
@@ -21,6 +20,10 @@ import Gen.Json.Decode
 {-| The generated type is returned by the `generate` function. If there is no built-in `Json.Decode` function
 in the `elm-lang/json` package, a declaration will be returned. This should be put somewhere in the generated
 code!
+
+The returned declaration field is a `Dict` to avoid duplicate declarations when calling `generate` recursively.
+You can use `Dict.union` to combine different declarations and ensure no duplicates.
+
 -}
 type alias Generated =
     { call : Elm.Expression -> Elm.Expression
