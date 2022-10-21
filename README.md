@@ -1,6 +1,6 @@
 # json-decode-map-gen
 
-An package `elm-codegen` for generating custom `Json.Decode.map` functions beyond what the `elm/json` package provides.
+A utility for elm-codegen to generate custom `Json.Decode.map` functions beyond what the elm/json package provides.
 
 ## When to Use
 
@@ -11,7 +11,7 @@ This package is most helpful in two cases:
 
 If you don't need to generate code the the two above use-cases, I highly recommend _not_ using this package. You'll likely be able to solve your problem with using decoders from the `elm/json` package by running `elm-codegen install elm/json`.
 
-**Note**: These particular use-cases can also be solved by installing `NoRedInk/elm-json-decode-pipeline` with elm-codgen and using it to generate decoders. The benefit of this package is clearer generated code (a call to a single `map{x}` function rather than a large pipeline) and no additional dependencies for your generated code other than `elm/json`.
+The particular problems this package solves can also be solved by installing `NoRedInk/elm-json-decode-pipeline` with elm-codegen and using it to generate decoders. The benefit of this package over that solution is a slightly different result in the generated code (a call to a single `map{x}` function rather than a large pipeline) and no additional dependencies for your generated code other than `elm/json`. Use what you feel is best for your project!
 
 ## Quick Start
 
@@ -53,20 +53,11 @@ main =
 You can then run elm-codegen to generate the following code in the `Example.elm` file:
 
 ```elm
-decodeRecord : Json.Decode.Decoder { name: String }
+decodeRecord : Json.Decode.Decoder { name : String }
 decodeRecord =
-    Json.Decode.map 
-        (\name -> { name = name } )
-    (Json.Decode.string)
-
+    Json.Decode.map (\name -> { name = name }) Json.Decode.string
 ```
 
-Note that the example above does not check to see if a custom declaration has been returned by the `generate` function. It's important to check for and properly put that function somewhere in your generated code!
+You can expand on this example by adding more items to the list passed to the `generate` function, running elm-codegen, and observing the results!
 
-## Advanced Usage
-
-This library is most useful for more advanced use cases. For this example, we're going to:
-
-1. [todo]
-
-If you're looking to generate a custom map function for something you're [...]
+Note that the example above does not check to see if a custom declaration has been returned by the `generate` function. It's important to check for the generated declaration and, if it exists, to put it somewhere in your generated code!

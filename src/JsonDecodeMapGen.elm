@@ -32,7 +32,7 @@ type alias Generated =
     }
 
 
-{-| Generates a custom `Json.Decode.mapX` function based on the number of expressions passed.
+{-| Generates a custom decoder map function (`jsonDecodeMapX`) based on the number of expressions passed.
 
 Unlike the `generate` function, this will _always_ build a custom `Json.Decode.mapX` function and provide the
 newly generated `Json.Decode.mapX` declaration.
@@ -112,17 +112,11 @@ generateCustom expressions =
     }
 
 
-{-| Generate a `Json.Decode.mapX` function based on the number of expressions passed.
+{-| Generate a `Json.Decode.map` function based on the number of expressions passed.
 
 If there are 8 or less items in the passed list, this function will return a call to a native `Json.Decode.mapX`
-function (X being the number of passed arguments). If there are more than 8 arguments, a custom `Json.Decode.mapX`
+function (X being the number of passed arguments). If there are more than 8 arguments, a custom `jsonDecodeMapX`
 function will be returned along with its declaration.
-
-    JsonDecodeMapGen.generate
-        [ Elm.string ""
-        ]
-
-Someting else...
 
 -}
 generate : List Elm.Expression -> Generated
