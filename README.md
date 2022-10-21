@@ -21,6 +21,7 @@ After getting elm-codegen setup and this package installed, in your `codegen/Gen
 import Elm
 import Elm.Annotation as Type
 import Gen.CodeGen.Generate as Generate
+import Gen.Json.Decode
 import JsonDecodeMapGen
 
 
