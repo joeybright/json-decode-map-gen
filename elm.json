@@ -2,7 +2,7 @@
     "type": "package",
     "name": "joeybright/json-decode-map-gen",
     "summary": "Generate custom Json.Decode.map functions with elm-codegen",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "version": "1.0.0",
     "exposed-modules": [
         "JsonDecodeMapGen"
