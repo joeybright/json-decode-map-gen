@@ -130,4 +130,30 @@ jsonDecodeMap9 func arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8 arg9 =
                     |> .imports
                     |> Expect.equal "import Json.Decode"
             )
+        , fuzz (Fuzz.intRange 0 100)
+            "The returned expression body calls the correct function"
+            (\int ->
+                JsonDecodeMapGen.generate (List.repeat int (Elm.string "a"))
+                    |> (\res -> res.call (Elm.string "apply"))
+                    |> Elm.ToString.expression
+                    |> .body
+                    |> (\val ->
+                            {- Using String.contains to check if the right expression is being called. -}
+                            if int == 0 then
+                                Expect.equal True
+                                    (String.contains "Json.Decode.succeed" val)
+
+                            else if int == 1 then
+                                Expect.equal True
+                                    (String.contains "Json.Decode.map" val)
+
+                            else if int <= 8 then
+                                Expect.equal True
+                                    (String.contains ("Json.Decode.map" ++ String.fromInt int) val)
+
+                            else
+                                Expect.equal True
+                                    (String.contains ("jsonDecodeMap" ++ String.fromInt int) val)
+                       )
+            )
         ]
